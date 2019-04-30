@@ -13,7 +13,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate{
     var motionManager:CMMotionManager!
     var acceleration:CGFloat = 0.0
     var player=SKSpriteNode(imageNamed:"player")
-    var player1 = SKSpriteNode(imageNamed: "down")
+   // var player1 = SKSpriteNode(imageNamed: "down")
     override func didMove(to view: SKView) {
         addChild(player)
         motionManager = CMMotionManager()
