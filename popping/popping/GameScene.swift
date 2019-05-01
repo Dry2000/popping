@@ -12,10 +12,31 @@ import CoreMotion
 class GameScene: SKScene,SKPhysicsContactDelegate{
     var motionManager:CMMotionManager!
     var acceleration:CGFloat = 0.0
-    var player=SKSpriteNode(imageNamed:"player")
-   // var player1 = SKSpriteNode(imageNamed: "down")
+    var player=SKSpriteNode(imageNamed:"down") //playerのNodeの画像は上昇中、下降中およびGAMEOVER時の３つからなる
+    var player1 = SKSpriteNode(imageNamed: "down")
+    var background = SKSpriteNode(imageNamed: "background")
+    let frameSprite = SKSpriteNode(imageNamed: "frame")
+    var scoreFrameSprite = SKSpriteNode(imageNamed: "score")
+    let pointLabel = SKLabelNode(fontNamed: "PixelMplus12-Regular")
+    let highScoreLabel = SKLabelNode(fontNamed: "PixelMplus12-Regular")
+    let charaSprite = SKSpriteNode(imageNamed:"up")
+    var charaYpos:CGFloat = 0.0
+    var charaYposition:CGFloat = 0.0
+    var charaXposition:Double = 0.0
+    var contactFrag = true
+    var floorSprite = SKSpriteNode()
+    let blocksNode = SKNode()
+    let blockSprite = SKSpriteNode(imageNamed: "ground")
+    let gameoverSprite = SKSpriteNode(imageNamed: "gameover")
+    var gameoverFlag = false
+    let giftSprite = SKSpriteNode(imageNamed: "paper20")
+    var point:Int = 0
     override func didMove(to view: SKView) {
         addChild(player)
+        addChild(background)
+        background.zPosition = -1
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: -3.0)
+        self.physicsWorld.contactDelegate = self
         motionManager = CMMotionManager()
         motionManager.accelerometerUpdateInterval = 0.1
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!){(data,_) in
