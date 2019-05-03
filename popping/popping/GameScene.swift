@@ -112,6 +112,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate{
         }
     }
     func gameover(){
+        gameoverSprite.isHidden = false
         gameoverFlag = true
         self.isPaused = true
         charaSprite.texture = SKTexture(imageNamed:"miss")
@@ -151,9 +152,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate{
             }else{
                 x = -CGFloat(randIntX)
             }
-            if markY>0{
                 y += CGFloat(randIntY)+50
-            }
             blockSprite.position = CGPoint(x:x,y:y)
             self.addChild(blockSprite)
             blocksNode.append(blockSprite)
